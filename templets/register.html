@@ -1,0 +1,51 @@
+{% comment %} <!-- myapp/templates/registration/register.html -->
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+  <h2>Register</h2>
+  <form method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+  </form>
+  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+{% endblock %}  {% endcomment %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Sign.css">
+    <title>Registration</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <label for="{{ form.username.id_for_lable}}">Username:</label>
+        <input type="text" id="username" name="{{ form.username.name }}" placeholder="name" required>
+        <span class="text-danger"> {{ form.username.errors}} </span>
+
+        <label for="{{ form.password1.id_for_lable}}">Password:</label>
+        <input type="text" id="passsword1" name="{{ form.password1.name }}" placeholder="password" required >
+        <span class="text-danger"> {{ form.password1.errors}} </span>
+
+        <label for="{{ form.password2.id_for_lable}}">Re-Password:</label>
+        <input type="text" id="passsword2" name="{{ form.password2.name }}" placeholder="Re-Password" required >
+        <span> {{ form.password2.errors}} </span>
+
+        <button type="submit">Register</button>
+
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </form>
+
+</body>
+</html>

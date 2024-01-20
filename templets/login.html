@@ -1,0 +1,48 @@
+<!-- myapp/templates/registration/login.html -->
+{% comment %} {% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post" action="{% url 'user_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+{% endblock %} {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/login.css">
+    <title>Login</title>
+    <style>
+        
+    </style>
+</head>
+<body> 
+
+  <form action="{% url 'login' %}" method="post">
+
+    {% csrf_token %}
+
+    <label for="{{ form.username.id_for_lable}}">Username:</label>
+    <input type="text" id="username" name="{{ form.username.name }}" placeholder="name" required />
+    <span class="text-danger"> {{ form.username.errors}} </span>
+
+    <label for="{{ form.password.id_for_lable}}">Password:</label>
+    <input type="text" id="passsword" name="{{ form.password.name }}" placeholder="password" required />
+    <span class="text-danger"> {{ form.password.errors}} </span>
+
+
+    <button type="submit">Login</button>
+    <p>Create a new account? <a href="{% url 'register' %}">Singup here</a></p>
+
+</form>
+
+</body>
+</html>

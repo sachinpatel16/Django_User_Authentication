@@ -1,0 +1,9 @@
+<!-- myapp/templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+{% endblock %}
